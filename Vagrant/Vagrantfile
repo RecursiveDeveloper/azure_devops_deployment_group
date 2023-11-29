@@ -1,0 +1,24 @@
+deploymentgroup_name = "deploymentgroup_name"
+az_org_url_path = "azure_devops_organization_url"
+project_name = "project_name"
+az_devops_pat = "azure_devops_personal_access_tokens"
+
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "ubuntu/focal64"
+  config.vm.box_version = "20231011.0.0"
+  config.vm.box_url = "https://app.vagrantup.com/ubuntu/boxes/focal64"
+
+  config.vm.boot_timeout = 700
+
+  config.vm.synced_folder "./../", "/home/ubuntu/Deployment_Group"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = 3096
+    vb.cpus = 3
+  end
+
+  config.vm.provision "shell",
+    path: "./../install_deploymentgroup.sh",
+    args: "#{deploymentgroup_name} #{az_org_url_path} #{project_name} #{az_devops_pat}"
+end
