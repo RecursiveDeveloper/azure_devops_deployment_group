@@ -5,11 +5,8 @@ az_devops_pat = "azure_devops_personal_access_tokens"
 
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "ubuntu/focal64"
-  config.vm.box_version = "20231011.0.0"
-  config.vm.box_url = "https://app.vagrantup.com/ubuntu/boxes/focal64"
-
-  config.vm.boot_timeout = 480
+  config.vm.box = "ubuntu/jammy64"
+  config.vm.boot_timeout = 400
 
   config.vm.provider "virtualbox" do |vb|
     vb.memory = 3096
